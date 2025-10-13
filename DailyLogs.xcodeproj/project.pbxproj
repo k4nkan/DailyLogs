@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B7D9837F2E9D540400604644 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B7D9837D2E9D540200604644 /* README.md */; };
+		B7D983812E9D544100604644 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B7D983802E9D543800604644 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B7D9836F2E9D3B4100604644 /* DailyLogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyLogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7D9837D2E9D540200604644 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B7D983802E9D543800604644 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +39,8 @@
 		B7D983662E9D3B4100604644 = {
 			isa = PBXGroup;
 			children = (
+				B7D9837D2E9D540200604644 /* README.md */,
+				B7D983802E9D543800604644 /* .gitignore */,
 				B7D983712E9D3B4100604644 /* DailyLogs */,
 				B7D983702E9D3B4100604644 /* Products */,
 			);
@@ -109,6 +118,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D983812E9D544100604644 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D9837F2E9D540400604644 /* README.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
