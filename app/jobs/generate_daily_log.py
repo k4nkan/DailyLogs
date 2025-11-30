@@ -19,11 +19,10 @@ def main():
         return
 
     raw = "\n".join(m["content"] for m in msgs)
+
     summary = summarize(raw)
 
-    print(summary)
-
-    # push_daily_log(date, summary)
+    push_daily_log(date, summary)
 
 
 if __name__ == "__main__":
