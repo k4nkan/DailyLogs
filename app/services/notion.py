@@ -9,9 +9,6 @@ from app.configs.notion_config import NOTION_API_KEY, NOTION_DATASOURCE_ID
 
 def push_daily_log(date: str, text: str):
     """Push daily log to Notion."""
-
-    print("DEBUG DB ID =", NOTION_DATASOURCE_ID)
-
     url = "https://api.notion.com/v1/pages"
     headers = {
         "Authorization": f"Bearer {NOTION_API_KEY}",
