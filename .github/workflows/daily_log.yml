@@ -28,5 +28,5 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-        run: python -m script/main.py
+          NOTION_DATASOURCE_ID: ${{ secrets.NOTION_DATASOURCE_ID }}
+        run: python script/main.py
