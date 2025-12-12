@@ -3,7 +3,7 @@ Discord bot for DailyLogs.
 """
 
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 import discord
 from dotenv import load_dotenv
@@ -50,7 +50,7 @@ async def on_message(message: discord.Message):
         supabase.table("logs").insert(
             {
                 "content": content,
-                "created_at": datetime.utcnow().isoformat(),
+                "created_at": datetime.now(timezone.utc).isoformat(),
             }
         ).execute()
     except PostgrestAPIError as e:
