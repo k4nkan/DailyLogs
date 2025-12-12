@@ -8,47 +8,63 @@ The workflow is as follows:
 
 1.  **Input**: You send messages to a Discord bot.
 2.  **Storage**: The bot saves these messages and their timestamps to Supabase.
-3.  **Processing**: A daily job retrieves the day's messages.
-4.  **Summarization**: OpenAI's API is used to summarize the messages into a coherent diary entry.
-5.  **Output**: The summary is printed (and can be pushed to Notion).
+3.  **Processing**: A daily script retrieves the day's messages (based on JST).
+4.  **Output**: The messages are formatted and pushed to Notion.
 
 ## How to Run
 
 ### Prerequisites
 
 - Python 3.13 or higher
-- A `.env` file in the root directory with the following keys:
-  - `DISCORD_TOKEN`
-  - `SUPABASE_URL`
-  - `SUPABASE_KEY`
-  - `OPENAI_API_KEY`
-  - `NOTION_API_KEY` (Optional)
-  - `NOTION_DATABASE_ID` (Optional)
+- Supabase project set up with a `logs` table.
+- Notion Integration set up.
+
+### Environment Variables
+
+You need to set up `.env` files in both `bot/` and `script/` directories.
+
+**`bot/.env`**:
+
+```
+DISCORD_TOKEN=your_discord_token
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+```
+
+**`script/.env`**:
+
+```
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+NOTION_API_KEY=your_notion_api_key
+NOTION_DATASOURCE_ID=your_notion_database_id
+```
 
 ### 1. Run the Discord Bot
 
 Start the bot to begin collecting messages.
 
 ```bash
-python -m app.main
+cd bot
+pip install -r requirements.txt
+python main.py
 ```
 
 ### 2. Generate Daily Log
 
-Run the job to generate a summary for the current day (UTC based).
+Run the script to fetch logs for the current day (JST) and push to Notion.
 
 ```bash
-python -m app.jobs.generate_daily_log
+cd script
+pip install -r requirements.txt
+python main.py
 ```
 
 ## Architecture
 
-The project is structured as follows:
+The project is structured into two main components:
 
-- **`app/bot`**: Contains the Discord bot logic and event handlers.
-- **`app/services`**: Handles interactions with external services.
-  - `supabase.py`: Manages data storage and retrieval.
-  - `openai_api.py`: Handles text summarization using LLMs.
-  - `notion.py`: Interfaces with Notion for publishing logs.
-- **`app/jobs`**: Contains scripts for batch processing, such as `generate_daily_log.py`.
-- **`app/configs`**: Configuration modules for loading environment variables.
+- **`bot/`**: Contains the Discord bot logic.
+  - `main.py`: Handles Discord events and saves messages to Supabase.
+- **`script/`**: Contains the daily processing logic.
+  - `main.py`: Fetches logs from Supabase, formats them, and syncs to Notion.
