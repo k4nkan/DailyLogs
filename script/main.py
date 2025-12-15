@@ -56,9 +56,9 @@ def main():
     """
     Fetch daily logs from Supabase (UTC), convert to JST day, and push to Notion.
     """
-    now_jst = datetime.now(JST)
+    target_jst = datetime.now(JST) - timedelta(days=1)
 
-    start_jst = now_jst.replace(hour=0, minute=0, second=0, microsecond=0)
+    start_jst = target_jst.replace(hour=0, minute=0, second=0, microsecond=0)
     end_jst = start_jst + timedelta(days=1)
 
     start_utc = start_jst.astimezone(timezone.utc)
