@@ -2,7 +2,7 @@ name: Generate Daily Log
 
 on:
   schedule:
-    - cron: "0 15 * * *"
+    - cron: "0 15 * * *" # JST 0:00
   workflow_dispatch:
 
 jobs:
@@ -25,8 +25,16 @@ jobs:
 
       - name: Run daily log generator
         env:
+          # --- diary / logs ---
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+          # --- song / music ---
+          SONG_SUPABASE_URL: ${{ secrets.SONG_SUPABASE_URL }}
+          SONG_SUPABASE_KEY: ${{ secrets.SONG_SUPABASE_KEY }}
+
+          # --- notion ---
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           NOTION_DATASOURCE_ID: ${{ secrets.NOTION_DATASOURCE_ID }}
+
         run: python script/main.py
