@@ -9,7 +9,8 @@ The workflow is as follows:
 1.  **Input**: You send messages to a Discord bot.
 2.  **Storage**: The bot saves these messages and their timestamps to Supabase.
 3.  **Processing**: A daily script retrieves the day's messages (based on JST).
-4.  **Output**: The messages are formatted and pushed to Notion.
+4.  **Enrichment**: The script creates a summary of your most played track on Spotify for that day. (Data source: [save-spotify-logs](https://github.com/k4nkan/save-spotify-logs))
+5.  **Output**: The messages and song summary are formatted and pushed to Notion.
 
 ## How to Run
 
@@ -38,6 +39,8 @@ SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_key
 NOTION_API_KEY=your_notion_api_key
 NOTION_DATASOURCE_ID=your_notion_database_id
+SONG_SUPABASE_URL=your_song_supabase_url
+SONG_SUPABASE_KEY=your_song_supabase_key
 ```
 
 ### 1. Run the Discord Bot
@@ -68,3 +71,4 @@ The project is structured into two main components:
   - `main.py`: Handles Discord events and saves messages to Supabase.
 - **`script/`**: Contains the daily processing logic.
   - `main.py`: Fetches logs from Supabase, formats them, and syncs to Notion.
+  - `music/spotify_summary.py`: Fetches top track data from Supabase.
